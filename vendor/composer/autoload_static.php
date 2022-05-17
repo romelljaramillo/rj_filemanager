@@ -23,14 +23,16 @@ class ComposerStaticInit070138d55050590b9fa78153674715fe
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'Rj_Filesmanager' => __DIR__ . '/../..' . '/rj_filesmanager.php',
-        'Roanja\\Rjfilesmanager\\Controller\\Admin\\FileController' => __DIR__ . '/../..' . '/src/Controller/Admin/FileController.php',
-        'Roanja\\Rjfilesmanager\\Database\\FilesManagerInstaller' => __DIR__ . '/../..' . '/src/Database/FilesManagerInstaller.php',
-        'Roanja\\Rjfilesmanager\\Entity\\RjFileManager' => __DIR__ . '/../..' . '/src/Entity/RjFileManager.php',
-        'Roanja\\Rjfilesmanager\\Form\\FileType' => __DIR__ . '/../..' . '/src/Form/FileType.php',
-        'Roanja\\Rjfilesmanager\\Grid\\Definition\\Factory\\FileGridDefinitionFactory' => __DIR__ . '/../..' . '/src/Grid/Definition/Factory/FileGridDefinitionFactory.php',
-        'Roanja\\Rjfilesmanager\\Grid\\Filters\\FileFilters' => __DIR__ . '/../..' . '/src/Grid/Filters/FileFilters.php',
-        'Roanja\\Rjfilesmanager\\Grid\\Query\\FileQueryBuilder' => __DIR__ . '/../..' . '/src/Grid/Query/FileQueryBuilder.php',
-        'Roanja\\Rjfilesmanager\\Repository\\FileRepository' => __DIR__ . '/../..' . '/src/Repository/FileRepository.php',
+        'Roanja\\Rjfilesmanager\\Controller\\Admin\\RjfileController' => __DIR__ . '/../..' . '/src/Controller/Admin/RjfileController.php',
+        'Roanja\\Rjfilesmanager\\Database\\RjfileInstaller' => __DIR__ . '/../..' . '/src/Database/RjfileInstaller.php',
+        'Roanja\\Rjfilesmanager\\Entity\\Rjfile' => __DIR__ . '/../..' . '/src/Entity/Rjfile.php',
+        'Roanja\\Rjfilesmanager\\Form\\RjFileType' => __DIR__ . '/../..' . '/src/Form/RjFileType.php',
+        'Roanja\\Rjfilesmanager\\Form\\RjfileFormDataHandler' => __DIR__ . '/../..' . '/src/Form/RjfileFormDataHandler.php',
+        'Roanja\\Rjfilesmanager\\Form\\RjfileFormDataProvider' => __DIR__ . '/../..' . '/src/Form/RjfileFormDataProvider.php',
+        'Roanja\\Rjfilesmanager\\Grid\\Definition\\Factory\\RjfileGridDefinitionFactory' => __DIR__ . '/../..' . '/src/Grid/Definition/Factory/RjfileGridDefinitionFactory.php',
+        'Roanja\\Rjfilesmanager\\Grid\\Filters\\RjfileFilters' => __DIR__ . '/../..' . '/src/Grid/Filters/RjfileFilters.php',
+        'Roanja\\Rjfilesmanager\\Grid\\Query\\RjfileQueryBuilder' => __DIR__ . '/../..' . '/src/Grid/Query/RjfileQueryBuilder.php',
+        'Roanja\\Rjfilesmanager\\Repository\\RjfileRepository' => __DIR__ . '/../..' . '/src/Repository/RjfileRepository.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

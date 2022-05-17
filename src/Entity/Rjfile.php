@@ -8,9 +8,10 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Table()
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="Roanja\Rjfilesmanager\Repository\RjfileRepository")
+ * @ORM\HasLifecycleCallbacks
  */
-class RjFileManager
+class Rjfile
 {
     /**
      * @var int
@@ -75,8 +76,7 @@ class RjFileManager
 
     /**
      * @param int $customerId
-     *
-     * @return RjFileManager
+     * @return $this
      */
     public function setCustomerId($customerId)
     {
@@ -95,8 +95,7 @@ class RjFileManager
 
     /**
      * @param string $title
-     *
-     * @return RjFileManager
+     * @return $this
      */
     public function setTitle($title)
     {
@@ -115,8 +114,7 @@ class RjFileManager
 
     /**
      * @param string $file
-     *
-     * @return RjFileManager
+     * @return $this
      */
     public function setfile($file)
     {
@@ -144,7 +142,7 @@ class RjFileManager
      *
      * @return DateTime
      */
-    public function getDateAdd(): DateTime
+    public function getDateAdd()
     {
         return $this->dateAdd;
     }
@@ -168,7 +166,7 @@ class RjFileManager
      *
      * @return DateTime
      */
-    public function getDateUpd(): DateTime
+    public function getDateUpd()
     {
         return $this->dateUpd;
     }
@@ -191,15 +189,15 @@ class RjFileManager
     /**
      * @return array
      */
-    public function toArray()
-    {
-        return [
-            'id_file' => $this->getId(),
-            'id_customer' => $this->getCustomerId(),
-            'title' => $this->getTitle(),
-            'file' => $this->getfile(),
-            'dateAdd' => $this->getDateAdd(),
-            'dateUpd' => $this->getDateUpd(),
-        ];
-    }
+    // public function toArray()
+    // {
+    //     return [
+    //         'id_file' => $this->getId(),
+    //         'id_customer' => $this->getCustomerId(),
+    //         'title' => $this->getTitle(),
+    //         'file' => $this->getfile(),
+    //         'dateAdd' => $this->getDateAdd(),
+    //         'dateUpd' => $this->getDateUpd(),
+    //     ];
+    // }
 }

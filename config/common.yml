@@ -1,12 +1,12 @@
 services:
-    roanja.rjfilesmanager.repository.file_repository:
-        class: Roanja\Rjfilesmanager\Repository\FileRepository
+    roanja.rjfilesmanager.repository.rjfile_repository:
+        class: Roanja\Rjfilesmanager\Repository\RjfileRepository
         factory: ['@doctrine.orm.default_entity_manager', getRepository]
         arguments:
-            - Roanja\Rjfilesmanager\Entity\File
+            - Roanja\Rjfilesmanager\Entity\Rjfile
 
     roanja.rjfilesmanager.file.install:
-        class: Roanja\Rjfilesmanager\Database\FilesManagerInstaller
+        class: Roanja\Rjfilesmanager\Database\RjfileInstaller
         arguments:
             - '@doctrine.dbal.default_connection'
             - '%database_prefix%'

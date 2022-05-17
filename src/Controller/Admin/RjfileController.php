@@ -21,8 +21,8 @@
 namespace Roanja\Rjfilesmanager\Controller\Admin;
 
 use PrestaShopBundle\Controller\Admin\FrameworkBundleAdminController as AbstractAdminController;
-use Roanja\Rjfilesmanager\Grid\Definition\Factory\FileGridDefinitionFactory;
-use Roanja\Rjfilesmanager\Grid\Filters\FileFilters;
+use Roanja\Rjfilesmanager\Grid\Definition\Factory\RjfileGridDefinitionFactory;
+use Roanja\Rjfilesmanager\Grid\Filters\RjfileFilters;
 use PrestaShopBundle\Security\Annotation\AdminSecurity;
 use PrestaShopBundle\Security\Annotation\ModuleActivated;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -30,11 +30,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Class FileController.
+ * Class RjfileController.
  *
  * @ModuleActivated(moduleName="rj_filesmanager", redirectRoute="admin_module_manage")
  */
-class FileController extends AbstractAdminController
+class RjfileController extends AbstractAdminController
 {
 
     /**
@@ -44,7 +44,7 @@ class FileController extends AbstractAdminController
      *
      * @return Response
      */
-    public function indexAction(FileFilters $filters)
+    public function indexAction(RjfileFilters $filters)
     {
         $fileGridFactory = $this->get('roanja.rjfilesmanager.grid.factory.files');
         $fileGrid = $fileGridFactory->getGrid($filters);
@@ -75,32 +75,32 @@ class FileController extends AbstractAdminController
         return $responseBuilder->buildSearchResponse(
             $this->get('roanja.rjfilesmanager.grid.definition.factory.files'),
             $request,
-            FileGridDefinitionFactory::GRID_ID,
+            RjfileGridDefinitionFactory::GRID_ID,
             'admin_rjfilesmanager_list'
         );
     }
 
     public function createAction(Request $request)
     {
-        // just set up a fresh $task object (remove the example data)
-        // $task = new Task();
+        $fileFormBuilder = $this->get('roanja.rjfilesmanager.form.identifiable_object.builder.rjfile_form_builder');
+        $fileForm = $fileFormBuilder->getForm();
+        $fileForm->handleRequest($request);
 
-        // $form = $this->createForm(TaskType::class, $task);
+        $fileFormHandler = $this->get('roanja.rjfilesmanager.form.identifiable_object.handler.rjfile_form_handler');
+        $result = $fileFormHandler->handle($fileForm);
 
-        // $form->handleRequest($request);
-        // if ($form->isSubmitted() && $form->isValid()) {
-        //     // $form->getData() holds the submitted values
-        //     // but, the original `$task` variable has also been updated
-        //     $task = $form->getData();
+        if (null !== $result->getIdentifiableObjectId()) {
+            $this->addFlash(
+                'success',
+                $this->trans('Successful creation.', 'Admin.Notifications.Success')
+            );
 
-        //     // ... perform some action, such as saving the task to the database
+            return $this->redirectToRoute('admin_rjfilesmanager_list');
+        }
 
-        //     return $this->redirectToRoute('task_success');
-        // }
-
-        // return $this->renderForm('task/new.html.twig', [
-        //     'form' => $form,
-        // ]);
+        return $this->render('@Modules/rj_filesmanager/views/templates/admin/create.html.twig', [
+            'fileForm' => $fileForm->createView(),
+        ]);
     }
 
     /**

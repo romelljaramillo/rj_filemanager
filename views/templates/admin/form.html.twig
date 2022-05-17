@@ -16,22 +16,21 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  * International Registered Trademark & Property of PrestaShop SA
  *#}
-{% extends '@PrestaShop/Admin/layout.html.twig' %}
-{% trans_default_domain "Admin.Design.Feature" %}
+{% import '@PrestaShop/Admin/macros.html.twig' as ps %}
 
 {% block contact_form %}
-    {{ form_start(quoteForm) }}
+    {{ form_start(fileForm) }}
     <div class="card">
         <h3 class="card-header">
             <i class="material-icons">mail_outline</i>
-            {{ 'Quotes'|trans({}, 'Modules.RjFilesManager.Admin') }}
+            {{ 'files'|trans({}, 'Modules.RjFilesManager.Admin') }}
         </h3>
         <div class="card-block row">
             <div class="card-text">
-                {{ form_errors(quoteForm) }}
+                {{ form_errors(fileForm) }}
 
-                {% block quote_form_rest %}
-                    {{ form_rest(quoteForm) }}
+                {% block file_form_rest %}
+                    {{ form_rest(fileForm) }}
                 {% endblock %}
             </div>
         </div>
@@ -44,5 +43,5 @@
             </button>
         </div>
     </div>
-    {{ form_end(quoteForm) }}
+    {{ form_end(fileForm) }}
 {% endblock %}

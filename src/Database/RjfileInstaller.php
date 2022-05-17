@@ -19,7 +19,7 @@ use Doctrine\DBAL\Driver\Statement;
  * We cannot use Doctrine entities on install because the mapping is not available yet
  * but we can still use Doctrine connection to perform DQL or SQL queries.
  */
-class FilesManagerInstaller
+class RjfileInstaller
 {
     /**
      * @var Connection
@@ -82,8 +82,7 @@ class FilesManagerInstaller
     {
         $errors = [];
         $tableNames = [
-            'quote',
-            'quote_lang',
+            'rjfile',
         ];
         foreach ($tableNames as $tableName) {
             $sql = 'DROP TABLE IF EXISTS ' . $this->dbPrefix . $tableName;

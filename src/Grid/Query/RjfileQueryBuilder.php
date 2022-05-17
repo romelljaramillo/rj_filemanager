@@ -17,7 +17,7 @@ use PrestaShop\PrestaShop\Core\Grid\Query\AbstractDoctrineQueryBuilder;
 use PrestaShop\PrestaShop\Core\Grid\Query\DoctrineSearchCriteriaApplicatorInterface;
 use PrestaShop\PrestaShop\Core\Grid\Search\SearchCriteriaInterface;
 
-class FileQueryBuilder extends AbstractDoctrineQueryBuilder
+class RjfileQueryBuilder extends AbstractDoctrineQueryBuilder
 {
     /**
      * @var DoctrineSearchCriteriaApplicatorInterface
@@ -86,13 +86,14 @@ class FileQueryBuilder extends AbstractDoctrineQueryBuilder
     {
         $allowedFilters = [
             'id_file',
+            'customerId',
             'title',
             'file',
         ];
 
         $qb = $this->connection
             ->createQueryBuilder()
-            ->from($this->dbPrefix . 'rj_file_manager', 'f')
+            ->from($this->dbPrefix . 'rjfile', 'f')
         ;
 
         foreach ($filters as $name => $value) {

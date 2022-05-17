@@ -11,12 +11,12 @@ declare(strict_types=1);
 
 namespace Roanja\Rjfilesmanager\Grid\Filters;
 
-use Roanja\Rjfilesmanager\Grid\Definition\Factory\FileGridDefinitionFactory;
+use Roanja\Rjfilesmanager\Grid\Definition\Factory\RjfileGridDefinitionFactory;
 use PrestaShop\PrestaShop\Core\Search\Filters;
 
-class FileFilters extends Filters
+class RjfileFilters extends Filters
 {
-    protected $filterId = FileGridDefinitionFactory::GRID_ID;
+    protected $filterId = RjfileGridDefinitionFactory::GRID_ID;
 
     /**
      * {@inheritdoc}

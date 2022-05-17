@@ -4,7 +4,7 @@ imports:
 services:
     # Form services
     roanja.rjfilesmanager.type.file:
-        class: 'Roanja\Rjfilesmanager\Form\FileType'
+        class: 'Roanja\Rjfilesmanager\Form\RjFileType'
         parent: 'form.type.translatable.aware'
         public: true
         arguments:
@@ -12,38 +12,38 @@ services:
         tags:
             - { name: form.type }
 
-    roanja.rjfilesmanager.form.identifiable_object.data_provider.file_form_data_provider:
-        class: 'Roanja\Rjfilesmanager\Form\FileFormDataProvider'
+    roanja.rjfilesmanager.form.identifiable_object.data_provider.rjfile_form_data_provider:
+        class: 'Roanja\Rjfilesmanager\Form\RjfileFormDataProvider'
         arguments:
-            - '@roanja.rjfilesmanager.repository.file_repository'
+            - '@roanja.rjfilesmanager.repository.rjfile_repository'
 
-    roanja.rjfilesmanager.form.identifiable_object.builder.file_form_builder:
+    roanja.rjfilesmanager.form.identifiable_object.builder.rjfile_form_builder:
         class: 'PrestaShop\PrestaShop\Core\Form\IdentifiableObject\Builder\FormBuilder'
         factory: 'prestashop.core.form.builder.form_builder_factory:create'
         arguments:
-            - 'Roanja\Rjfilesmanager\Form\FileType'
-            - '@roanja.rjfilesmanager.form.identifiable_object.data_provider.file_form_data_provider'
+            - 'Roanja\Rjfilesmanager\Form\RjFileType'
+            - '@roanja.rjfilesmanager.form.identifiable_object.data_provider.rjfile_form_data_provider'
 
-    roanja.rjfilesmanager.form.identifiable_object.data_handler.file_form_data_handler:
-        class: 'Roanja\Rjfilesmanager\Form\FileFormDataHandler'
+    roanja.rjfilesmanager.form.identifiable_object.data_handler.rjfile_form_data_handler:
+        class: 'Roanja\Rjfilesmanager\Form\RjfileFormDataHandler'
         arguments:
-            - '@roanja.rjfilesmanager.repository.file_repository'
+            - '@roanja.rjfilesmanager.repository.rjfile_repository'
             - '@prestashop.core.admin.lang.repository'
             - '@doctrine.orm.default_entity_manager'
 
-    roanja.rjfilesmanager.form.identifiable_object.handler.file_form_handler:
+    roanja.rjfilesmanager.form.identifiable_object.handler.rjfile_form_handler:
         class: 'PrestaShop\PrestaShop\Core\Form\IdentifiableObject\Handler\FormHandler'
         factory: 'prestashop.core.form.identifiable_object.handler.form_handler_factory:create'
         arguments:
-            - '@roanja.rjfilesmanager.form.identifiable_object.data_handler.file_form_data_handler'
+            - '@roanja.rjfilesmanager.form.identifiable_object.data_handler.rjfile_form_data_handler'
 
     # Grid services
     roanja.rjfilesmanager.grid.definition.factory.files:
-        class: 'Roanja\Rjfilesmanager\Grid\Definition\Factory\FileGridDefinitionFactory'
+        class: 'Roanja\Rjfilesmanager\Grid\Definition\Factory\RjfileGridDefinitionFactory'
         parent: 'prestashop.core.grid.definition.factory.abstract_grid_definition'
 
     roanja.rjfilesmanager.grid.query_builder.file:
-        class: 'Roanja\Rjfilesmanager\Grid\Query\FileQueryBuilder'
+        class: 'Roanja\Rjfilesmanager\Grid\Query\RjfileQueryBuilder'
         parent: 'prestashop.core.grid.abstract_query_builder'
         public: true
         arguments:
@@ -66,3 +66,10 @@ services:
             - '@prestashop.core.grid.filter.form_factory'
             - '@prestashop.core.hook.dispatcher'
 
+    # Generator service
+    # prestashop.module.demodoctrine.quotes.generator:
+    #     class: 'Roanja\Rjfilesmanager\Database\QuoteGenerator'
+    #     arguments:
+    #         - '@roanja.rjfilesmanager.repository.rjfile_repository'
+    #         - '@prestashop.core.admin.lang.repository'
+    #         - '@doctrine.orm.default_entity_manager'

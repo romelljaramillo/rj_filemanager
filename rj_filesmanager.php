@@ -19,7 +19,7 @@
  */
 declare(strict_types=1);
 
-use Roanja\Rjfilesmanager\Database\FilesManagerInstaller;
+use Roanja\Rjfilesmanager\Database\RjfileInstaller;
 
 if (!defined('_CAN_LOAD_FILES_')) {
     exit;
@@ -187,7 +187,7 @@ class Rj_Filesmanager extends Module
      */
     private function installTables()
     {
-        /** @var FilesManagerInstaller $installer */
+        /** @var RjfileInstaller $installer */
         $installer = $this->getInstaller();
         $errors = $installer->createTables();
 
@@ -199,7 +199,7 @@ class Rj_Filesmanager extends Module
      */
     private function removeTables()
     {
-        /** @var FilesManagerInstaller $installer */
+        /** @var RjfileInstaller $installer */
         $installer = $this->getInstaller();
         $errors = $installer->dropTables();
 
@@ -207,7 +207,7 @@ class Rj_Filesmanager extends Module
     }
 
     /**
-     * @return FilesManagerInstaller
+     * @return RjfileInstaller
      */
     private function getInstaller()
     {
@@ -220,7 +220,7 @@ class Rj_Filesmanager extends Module
 
         // During install process the modules's service is not available yet so we build it manually
         if (!$installer) {
-            $installer = new FilesManagerInstaller(
+            $installer = new RjfileInstaller(
                 $this->get('doctrine.dbal.default_connection'),
                 $this->getContainer()->getParameter('database_prefix')
             );

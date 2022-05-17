@@ -2,7 +2,7 @@ admin_rjfilesmanager_list:
   path: /filesmanager/list
   methods: [GET]
   defaults:
-    _controller: 'Roanja\Rjfilesmanager\Controller\Admin\FileController::indexAction'
+    _controller: 'Roanja\Rjfilesmanager\Controller\Admin\RjfileController::indexAction'
     _legacy_controller: AdminFilesManager
     _legacy_link: AdminFilesManager
 
@@ -10,22 +10,23 @@ admin_rjfilesmanager_search:
     path: /filesmanager/list
     methods: [POST]
     defaults:
-        _controller: 'Roanja\Rjfilesmanager\Controller\Admin\FileController::searchAction'
+        _controller: 'Roanja\Rjfilesmanager\Controller\Admin\RjfileController::searchAction'
         _legacy_controller: 'AdminFilesManager'
         _legacy_link: 'AdminFilesManager:search'
 
 admin_rjfilesmanager_create:
-  path: /filesmanager/create
+  path: /filesmanager/new
   methods: [GET, POST]
   defaults:
-    _controller: 'Roanja\Rjfilesmanager\Controller\Admin\FileController::createAction'
+    _controller: 'Roanja\Rjfilesmanager\Controller\Admin\RjfileController::createAction'
     _legacy_controller: AdminFilesManager
+    # _legacy_link: 'AdminFilesManager:add'
 
 admin_rjfilesmanager_edit:
   path: /filesmanager/edit/{fileId}
   methods: [GET, POST]
   defaults:
-    _controller: 'Roanja\Rjfilesmanager\Controller\Admin\FileController::editAction'
+    _controller: 'Roanja\Rjfilesmanager\Controller\Admin\RjfileController::editAction'
     _legacy_controller: AdminFilesManager
   requirements:
     fileId: \d+
@@ -34,7 +35,7 @@ admin_rjfilesmanager_delete:
   path: /filesmanager/delete/{fileId}
   methods: [DELETE]
   defaults:
-    _controller: 'Roanja\Rjfilesmanager\Controller\Admin\FileController::deleteAction'
+    _controller: 'Roanja\Rjfilesmanager\Controller\Admin\RjfileController::deleteAction'
     _legacy_controller: AdminFilesManager
   requirements:
     fileId: \d+
@@ -43,5 +44,5 @@ admin_rjfilesmanager_bulk_delete:
     path: /filesmanager/bulkDelete
     methods: [POST]
     defaults:
-        _controller: 'Roanja\Rjfilesmanager\Controller\Admin\FileController::deleteBulkAction'
+        _controller: 'Roanja\Rjfilesmanager\Controller\Admin\RjfileController::deleteBulkAction'
         _legacy_controller: 'AdminFilesManager'

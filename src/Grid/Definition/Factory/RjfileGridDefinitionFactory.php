@@ -29,7 +29,7 @@ use PrestaShopBundle\Form\Admin\Type\SearchAndResetType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 
-class FileGridDefinitionFactory extends AbstractGridDefinitionFactory
+class RjfileGridDefinitionFactory extends AbstractGridDefinitionFactory
 {
     const GRID_ID = 'file';
 
@@ -64,6 +64,12 @@ class FileGridDefinitionFactory extends AbstractGridDefinitionFactory
                     ->setName($this->trans('ID', [], 'Admin.Global'))
                     ->setOptions([
                         'field' => 'id_file',
+                    ])
+            )
+            ->add((new DataColumn('customerId'))
+                    ->setName($this->trans('customerId', [], 'Modules.Rjfilesmanager.Admin'))
+                    ->setOptions([
+                        'field' => 'customerId',
                     ])
             )
             ->add((new DataColumn('title'))
@@ -126,6 +132,15 @@ class FileGridDefinitionFactory extends AbstractGridDefinitionFactory
                         ],
                     ])
                     ->setAssociatedColumn('id_file')
+            )
+            ->add((new Filter('customerId', TextType::class))
+                    ->setTypeOptions([
+                        'required' => false,
+                        'attr' => [
+                            'placeholder' => $this->trans('customerId', [], 'Modules.Rjfilesmanager.Admin'),
+                        ],
+                    ])
+                    ->setAssociatedColumn('customerId')
             )
             ->add((new Filter('title', TextType::class))
                     ->setTypeOptions([

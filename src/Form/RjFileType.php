@@ -15,11 +15,12 @@ use PrestaShop\PrestaShop\Core\ConstraintValidator\Constraints\DefaultLanguage;
 use PrestaShopBundle\Form\Admin\Type\TranslatableType;
 use PrestaShopBundle\Form\Admin\Type\TranslatorAwareType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
-class FileType extends TranslatorAwareType
+class RjFileType extends TranslatorAwareType
 {
     /**
      * {@inheritdoc}
@@ -27,6 +28,22 @@ class FileType extends TranslatorAwareType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('customerId', TextType::class, [
+                'label' => 'customerId',
+                'help' => 'customerId.',
+                'translation_domain' => 'Modules.RjFilesManager.Admin',
+                'constraints' => [
+                    new Length([
+                        'max' => 255,
+                        'maxMessage' => $this->trans(
+                            'This field cannot be longer than %limit% characters',
+                            'Admin.Notifications.Error',
+                            ['%limit%' => 255]
+                        ),
+                    ]),
+                    new NotBlank(),
+                ]
+            ])
             ->add('title', TextType::class, [
                 'label' => 'title name',
                 'help' => 'title.',
@@ -42,7 +59,23 @@ class FileType extends TranslatorAwareType
                     ]),
                     new NotBlank(),
                 ]
-            ])       
+            ])
+            ->add('file', TextType::class, [
+                'label' => 'File',
+                'help' => 'File content (e.g. All for one, one for all).',
+                'translation_domain' => 'Modules.RjFilesManager.Admin',
+                'constraints' => [
+                    new Length([
+                        'max' => 255,
+                        'maxMessage' => $this->trans(
+                            'This field cannot be longer than %limit% characters',
+                            'Admin.Notifications.Error',
+                            ['%limit%' => 255]
+                        ),
+                    ]),
+                    new NotBlank(),
+                ],
+            ])
         ;
     }
 }

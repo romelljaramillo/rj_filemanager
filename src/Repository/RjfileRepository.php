@@ -14,7 +14,7 @@ namespace Roanja\Rjfilesmanager\Repository;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\QueryBuilder;
 
-class FileRepository extends EntityRepository
+class RjfileRepository extends EntityRepository
 {
 
     public function getAllIds()
@@ -25,10 +25,10 @@ class FileRepository extends EntityRepository
             ->select('f.id')
         ;
 
-        $quotes = $qb->getQuery()->getScalarResult();
+        $files = $qb->getQuery()->getScalarResult();
 
-        return array_map(function($quote) {
-            return $quote['id'];
-        }, $quotes);
+        return array_map(function($file) {
+            return $file['id'];
+        }, $files);
     }
 }
