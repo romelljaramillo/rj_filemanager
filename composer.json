@@ -1,0 +1,42 @@
+{
+    "name": "roanja/rj_filesmanager",
+    "description": "Roanja - Rj Files Manager",
+    "homepage": "https://github.com/romelljaramillo/rj_filesmanager",
+    "license": "MIT",
+    "authors": [
+      {
+        "name": "Roanja",
+        "email": "info@roanja.com"
+      }
+    ],
+    "require": {
+      "php": "^5.3.2 || ^7.0"
+    },
+    "require-dev": {
+      "prestashop/php-dev-tools": "1.*"
+    },
+    "autoload": {
+      "psr-4": {
+        "Roanja\\Rjfilesmanager\\": "src/"
+      },
+      "classmap": ["rj_filesmanager.php"],
+      "exclude-from-classmap": []
+    },
+    "config": {
+      "preferred-install": "dist",
+      "classmap-authoritative": true,
+      "optimize-autoloader": true,
+      "prepend-autoloader": false,
+      "platform": {
+        "php": ">=5.6.0"
+      }
+    },
+    "repositories": [
+      {
+          "type": "vcs",
+          "url": "git@github.com/romelljaramillo/rj_filesmanager.git"
+      }
+    ],
+    "type": "prestashop-module"
+  }
+  

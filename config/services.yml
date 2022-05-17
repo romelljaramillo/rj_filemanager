@@ -1,0 +1,68 @@
+imports:
+    - { resource: ./common.yml }
+
+services:
+    # Form services
+    roanja.rjfilesmanager.type.file:
+        class: 'Roanja\Rjfilesmanager\Form\FileType'
+        parent: 'form.type.translatable.aware'
+        public: true
+        arguments:
+            - '@=service("prestashop.adapter.multistore_feature").isUsed()'
+        tags:
+            - { name: form.type }
+
+    roanja.rjfilesmanager.form.identifiable_object.data_provider.file_form_data_provider:
+        class: 'Roanja\Rjfilesmanager\Form\FileFormDataProvider'
+        arguments:
+            - '@roanja.rjfilesmanager.repository.file_repository'
+
+    roanja.rjfilesmanager.form.identifiable_object.builder.file_form_builder:
+        class: 'PrestaShop\PrestaShop\Core\Form\IdentifiableObject\Builder\FormBuilder'
+        factory: 'prestashop.core.form.builder.form_builder_factory:create'
+        arguments:
+            - 'Roanja\Rjfilesmanager\Form\FileType'
+            - '@roanja.rjfilesmanager.form.identifiable_object.data_provider.file_form_data_provider'
+
+    roanja.rjfilesmanager.form.identifiable_object.data_handler.file_form_data_handler:
+        class: 'Roanja\Rjfilesmanager\Form\FileFormDataHandler'
+        arguments:
+            - '@roanja.rjfilesmanager.repository.file_repository'
+            - '@prestashop.core.admin.lang.repository'
+            - '@doctrine.orm.default_entity_manager'
+
+    roanja.rjfilesmanager.form.identifiable_object.handler.file_form_handler:
+        class: 'PrestaShop\PrestaShop\Core\Form\IdentifiableObject\Handler\FormHandler'
+        factory: 'prestashop.core.form.identifiable_object.handler.form_handler_factory:create'
+        arguments:
+            - '@roanja.rjfilesmanager.form.identifiable_object.data_handler.file_form_data_handler'
+
+    # Grid services
+    roanja.rjfilesmanager.grid.definition.factory.files:
+        class: 'Roanja\Rjfilesmanager\Grid\Definition\Factory\FileGridDefinitionFactory'
+        parent: 'prestashop.core.grid.definition.factory.abstract_grid_definition'
+
+    roanja.rjfilesmanager.grid.query_builder.file:
+        class: 'Roanja\Rjfilesmanager\Grid\Query\FileQueryBuilder'
+        parent: 'prestashop.core.grid.abstract_query_builder'
+        public: true
+        arguments:
+            - '@prestashop.core.query.doctrine_search_criteria_applicator'
+            - "@=service('prestashop.adapter.legacy.context').getContext().language.id"
+
+    roanja.rjfilesmanager.grid.data_provider.files:
+        class: '%prestashop.core.grid.data.factory.doctrine_grid_data_factory%'
+        arguments:
+            - '@roanja.rjfilesmanager.grid.query_builder.file'
+            - '@prestashop.core.hook.dispatcher'
+            - '@prestashop.core.grid.query.doctrine_query_parser'
+            - 'file'
+
+    roanja.rjfilesmanager.grid.factory.files:
+        class: 'PrestaShop\PrestaShop\Core\Grid\GridFactory'
+        arguments:
+            - '@roanja.rjfilesmanager.grid.definition.factory.files'
+            - '@roanja.rjfilesmanager.grid.data_provider.files'
+            - '@prestashop.core.grid.filter.form_factory'
+            - '@prestashop.core.hook.dispatcher'
+

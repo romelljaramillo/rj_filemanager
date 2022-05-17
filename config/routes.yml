@@ -1,0 +1,47 @@
+admin_rjfilesmanager_list:
+  path: /filesmanager/list
+  methods: [GET]
+  defaults:
+    _controller: 'Roanja\Rjfilesmanager\Controller\Admin\FileController::indexAction'
+    _legacy_controller: AdminFilesManager
+    _legacy_link: AdminFilesManager
+
+admin_rjfilesmanager_search:
+    path: /filesmanager/list
+    methods: [POST]
+    defaults:
+        _controller: 'Roanja\Rjfilesmanager\Controller\Admin\FileController::searchAction'
+        _legacy_controller: 'AdminFilesManager'
+        _legacy_link: 'AdminFilesManager:search'
+
+admin_rjfilesmanager_create:
+  path: /filesmanager/create
+  methods: [GET, POST]
+  defaults:
+    _controller: 'Roanja\Rjfilesmanager\Controller\Admin\FileController::createAction'
+    _legacy_controller: AdminFilesManager
+
+admin_rjfilesmanager_edit:
+  path: /filesmanager/edit/{fileId}
+  methods: [GET, POST]
+  defaults:
+    _controller: 'Roanja\Rjfilesmanager\Controller\Admin\FileController::editAction'
+    _legacy_controller: AdminFilesManager
+  requirements:
+    fileId: \d+
+
+admin_rjfilesmanager_delete:
+  path: /filesmanager/delete/{fileId}
+  methods: [DELETE]
+  defaults:
+    _controller: 'Roanja\Rjfilesmanager\Controller\Admin\FileController::deleteAction'
+    _legacy_controller: AdminFilesManager
+  requirements:
+    fileId: \d+
+
+admin_rjfilesmanager_bulk_delete:
+    path: /filesmanager/bulkDelete
+    methods: [POST]
+    defaults:
+        _controller: 'Roanja\Rjfilesmanager\Controller\Admin\FileController::deleteBulkAction'
+        _legacy_controller: 'AdminFilesManager'
