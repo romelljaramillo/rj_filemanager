@@ -66,10 +66,10 @@ class RjfileGridDefinitionFactory extends AbstractGridDefinitionFactory
                         'field' => 'id_file',
                     ])
             )
-            ->add((new DataColumn('customerId'))
+            ->add((new DataColumn('id_customer'))
                     ->setName($this->trans('customerId', [], 'Modules.Rjfilesmanager.Admin'))
                     ->setOptions([
-                        'field' => 'customerId',
+                        'field' => 'id_customer',
                     ])
             )
             ->add((new DataColumn('title'))

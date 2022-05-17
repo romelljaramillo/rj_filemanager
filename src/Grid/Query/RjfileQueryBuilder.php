@@ -53,7 +53,7 @@ class RjfileQueryBuilder extends AbstractDoctrineQueryBuilder
     public function getSearchQueryBuilder(SearchCriteriaInterface $searchCriteria)
     {
         $qb = $this->getQueryBuilder($searchCriteria->getFilters());
-        $qb->select('f.id_file, f.title, f.file')
+        $qb->select('f.id_file, f.id_customer, f.title, f.file')
             ->groupBy('f.id_file');
 
         $this->searchCriteriaApplicator
@@ -86,7 +86,7 @@ class RjfileQueryBuilder extends AbstractDoctrineQueryBuilder
     {
         $allowedFilters = [
             'id_file',
-            'customerId',
+            'id_customer',
             'title',
             'file',
         ];
